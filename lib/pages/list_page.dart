@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:technical_flutter_api/core/movie_list/movie_list_bloc.dart';
 import 'package:technical_flutter_api/widgets/movie_entry.dart';
 
@@ -16,7 +17,7 @@ class _ListPageState extends State<ListPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<MovieListBloc>(context).add(MovieListLoadEvent());
+    BlocProvider.of<MovieListBloc>(context).add(const MovieListLoadEvent());
   }
 
   @override
@@ -39,10 +40,15 @@ class _ListPageState extends State<ListPage> {
                     itemCount: state.movies.length,
                     itemBuilder: (context, index) {
                       final movie = state.movies[index];
-                      return MovieEntry(
-                        title: movie.title,
-                        posterPath: movie.posterPath,
-                        averageVote: movie.averageVote,
+                      return GestureDetector(
+                        onTap: () {
+                          GoRouter.of(context).push('/movie/${movie.id}');
+                        },
+                        child: MovieEntry(
+                          title: movie.title,
+                          posterPath: movie.posterPath,
+                          averageVote: movie.averageVote,
+                        ),
                       );
                     },
                   );

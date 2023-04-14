@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:technical_flutter_api/model/model/movie.dart';
 import 'package:technical_flutter_api/model/repository/movie_repository.dart';
 

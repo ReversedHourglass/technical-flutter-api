@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:technical_flutter_api/core/movie_details/movie_details_bloc.dart';
 import 'package:technical_flutter_api/core/movie_list/movie_list_bloc.dart';
 import 'package:technical_flutter_api/data/repository/movie_repository_impl.dart';
 import 'package:technical_flutter_api/model/repository/movie_repository.dart';
@@ -38,6 +39,12 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<MovieListBloc>(
           create: (BuildContext context) => MovieListBloc(
+            movieRepository: movieRepository,
+          ),
+          lazy: true,
+        ),
+        BlocProvider<MovieDetailsBloc>(
+          create: (BuildContext context) => MovieDetailsBloc(
             movieRepository: movieRepository,
           ),
           lazy: true,

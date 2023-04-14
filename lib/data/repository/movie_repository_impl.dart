@@ -13,6 +13,32 @@ class MovieRepositoryImpl extends MovieRepository {
   });
 
   @override
+  Future<Movie> getById({
+    required String id,
+  }) async {
+    var url = Uri.https(
+      'api.themoviedb.org',
+      '3/movie/$id',
+      {
+        'api_key': apiKey,
+        'language': 'en-US',
+      },
+    );
+    var response = await http.get(
+      url,
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to load movie');
+    }
+
+    Map<String, dynamic> json = jsonDecode(response.body);
+    MovieEntity entity = MovieEntity.fromJson(json);
+
+    return Movie.fromEntity(entity);
+  }
+
+  @override
   Future<List<Movie>> getMovies({
     int? page,
   }) async {
