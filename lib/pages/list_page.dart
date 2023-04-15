@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:technical_flutter_api/core/movie_list/movie_list_bloc.dart';
-import 'package:technical_flutter_api/widgets/movie_entry.dart';
+import 'package:technical_flutter_api/widgets/vertical_movie_entry.dart';
 
 class ListPage extends StatefulWidget {
   const ListPage({Key? key}) : super(key: key);
@@ -44,7 +44,8 @@ class _ListPageState extends State<ListPage> {
                         onTap: () {
                           GoRouter.of(context).push('/movie/${movie.id}');
                         },
-                        child: MovieEntry(
+                        child: VerticalMovieEntry(
+                          key: ValueKey(movie.id),
                           title: movie.title,
                           posterPath: movie.posterPath,
                           averageVote: movie.averageVote,

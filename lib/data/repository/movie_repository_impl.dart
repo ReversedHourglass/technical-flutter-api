@@ -39,7 +39,7 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<List<Movie>> getMovies({
+  Future<List<Movie>> getTopRated({
     int? page,
   }) async {
     var url = Uri.https(
@@ -64,9 +64,14 @@ class MovieRepositoryImpl extends MovieRepository {
     List<Movie> movies = [];
 
     for (final element in results) {
-      movies.add(
-        Movie.fromEntity(MovieEntity.fromJson(element)),
-      );
+      try {
+        MovieEntity entity = MovieEntity.fromJson(element);
+        movies.add(Movie.fromEntity(entity));
+      } catch (e) {
+        // Movies from the "TheMovieDb" APi have optional fields.
+        // If one of the field is not present, just ignore the movie.
+        continue;
+      }
     }
 
     return movies;

@@ -37,7 +37,7 @@ class TabPage extends StatelessWidget {
 
   static int _calculateSelectedIndex(BuildContext context) {
     final String location = GoRouterState.of(context).location;
-    if (location.startsWith('/')) {
+    if (location.startsWith('/dashboard')) {
       return 0;
     }
     if (location.startsWith('/list')) {
@@ -49,7 +49,7 @@ class TabPage extends StatelessWidget {
   void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:
-        GoRouter.of(context).go('/');
+        GoRouter.of(context).go('/dashboard');
         break;
       case 1:
         GoRouter.of(context).go('/list');

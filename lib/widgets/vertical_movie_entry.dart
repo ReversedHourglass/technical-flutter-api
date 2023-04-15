@@ -1,11 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class MovieEntry extends StatelessWidget {
+class VerticalMovieEntry extends StatelessWidget {
   final String title;
   final String posterPath;
   final double averageVote;
 
-  const MovieEntry({
+  const VerticalMovieEntry({
     required this.title,
     required this.posterPath,
     required this.averageVote,
@@ -17,8 +18,8 @@ class MovieEntry extends StatelessWidget {
     return Card(
       child: Row(
         children: [
-          Image.network(
-            posterPath,
+          CachedNetworkImage(
+            imageUrl: posterPath,
             width: 100,
             height: 100,
             fit: BoxFit.cover,

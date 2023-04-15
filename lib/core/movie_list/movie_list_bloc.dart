@@ -15,7 +15,7 @@ class MovieListBloc extends Bloc<MovieListEvent, MovieListState> {
       if (event is MovieListLoadEvent) {
         emit(MovieListLoadingState());
         try {
-          final List<Movie> movies = await movieRepository.getMovies(
+          final List<Movie> movies = await movieRepository.getTopRated(
             page: event.page,
           );
           emit(MovieListLoadedState(movies: movies));

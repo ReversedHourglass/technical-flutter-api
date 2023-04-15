@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:technical_flutter_api/core/movie_details/movie_details_bloc.dart';
+import 'package:technical_flutter_api/widgets/movie_detailed_card.dart';
 
 class MovieDetailsPage extends StatefulWidget {
   final String? id;
@@ -45,7 +46,14 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           }
           if (state is MovieDetailsLoadedState) {
             return Center(
-              child: Text(state.movie.title),
+              child: MovieDetailedCard(
+                title: state.movie.title,
+                posterPath: state.movie.posterPath,
+                averageVote: state.movie.averageVote,
+                overview: state.movie.overview,
+                tagline: state.movie.tagline,
+                budget: state.movie.budget,
+              ),
             );
           }
           if (state is MovieDetailsErrorState) {

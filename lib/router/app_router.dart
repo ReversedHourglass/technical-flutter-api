@@ -5,7 +5,7 @@ import 'package:technical_flutter_api/pages/movie_details_page.dart';
 import 'package:technical_flutter_api/pages/tab_page.dart';
 
 final router = GoRouter(
-  initialLocation: '/',
+  initialLocation: '/dashboard',
   routes: [
     ShellRoute(
       builder: (context, state, child) => TabPage(
@@ -14,7 +14,7 @@ final router = GoRouter(
       routes: [
         GoRoute(
           builder: (context, state) => const DashboardPage(),
-          path: '/',
+          path: '/dashboard',
         ),
         GoRoute(
           path: '/list',
