@@ -41,8 +41,8 @@ class TvShowRepositoryImpl extends TvShowRepository {
         TvShowEntity entity = TvShowEntity.fromJson(element);
         tvShows.add(TvShow.fromEntity(entity));
       } catch (e) {
-        // Movies from the "TheMovieDb" APi have optional fields.
-        // If one of the field is not present, just ignore the movie.
+        // TV shows from the "TheMovieDb" APi have optional fields.
+        // If one of the field is not present, just ignore the TV show.
         continue;
       }
     }
